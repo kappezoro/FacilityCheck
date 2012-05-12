@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+>
+<!-- display -->
+	<!-- <TextView 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:text="@string/label_description"
+	/> -->
+	<LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+	>
+	<!-- search_bar-->
+	<TextView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="@string/label_search" 
+	/>
+	</LinearLayout>
+	<EditText 
+		android:id="@+id/text_search"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:inputType="text"
+	/>	
+	
+	<!-- result_search_button -->
+	<Button
+		 android:id="@+id/button_search_hotel"
+		 android:layout_width="wrap_content"
+		 android:layout_height="wrap_content"
+		 android:text="@string/button_search_hotel"
+	/>
+	
+	<TextView 
+		android:id="@+id/button_show_next_activity"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 	
+	/>	
+
+	<!-- result_search_button -->
+	<!-- <Button
+		 android:id="@+id/button_search_hotel"
+		 android:layout_width="wrap_content"
+		 android:layout_height="wrap_content"
+		 android:text="@string/button_previous_search_hotel"
+	/>
+	
+	<TextView 
+		android:id="@+id/label_previous_hotel_search"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 	
+	/> -->
+	
+</LinearLayout>

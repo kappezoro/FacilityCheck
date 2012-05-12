@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- 画面1　検索画面 -->
+	<string name="label_search">お泊まりのホテルを教えて下さいませ。</string>
+	<string name="button_search_hotel">お探し致します。</string>
+	<string name="app_name">FacilityCheck</string>
+	<string name="label_description">Please Input Hotel Name</string>
+	<string name="button_previous_search_hotel">検索履歴</string>
+	
+	<!-- 画面2 ホテル名表示画面 -->
+
+	<string name="label_hotel">ホテル・宿泊施設名をお選びくださいませ。</string>
+
+	<!-- 画面3 設備情報画面 -->
+	<string name="label_facility">このホテルの設備情報でございます。</string>
+
+</resources>
