@@ -38,7 +38,7 @@ public class FacilityInfo extends ListActivity {
 			//Log.v("確認", hotelNo + "はhotelNo.です。");
 
 			String uri = "http://api.rakuten.co.jp/rws/3.0/rest?"
-					+ "developerId=c49629cf93f27be23c20d2f7af1086a5"
+					+ "developerId=***"
 					+ "&operation=HotelDetailSearch" + "&responseType=large"
 					+ "&version=2009-09-09" + "&hotelNo=" + hotelNo;
 			// -----[httpクライアントの設定]

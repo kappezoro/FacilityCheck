@@ -29,30 +29,30 @@ import android.widget.Toast;
 public class ShowHotel extends Activity {
 	/** Called when the activity is first created. */
 	@Override
-	// ‰æ–Ê\¬
+	// Ã¢ÃŠÃ±Â Ã§\ÃªÂ¨
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.hotel_list);
 		String keyword = "KEYWORD";
 		try {
 			Intent i = getIntent();
-			// “¹‚É‚Â‚Á‚±‚ñ‚Å‚ ‚Á‚½’l‚ğ‚¤‚¯‚Æ‚é‚æ
+			// Ã¬Ï€Ã‡â€¦Ã‡Â¬Ã‡Â¡Ã‡Â±Ã‡Ã’Ã‡â‰ˆÃ‡â€ Ã‡Â¡Ã‡Î©Ã­lÃ‡ï£¿Ã‡Â§Ã‡Ã˜Ã‡âˆ†Ã‡ÃˆÃ‡ÃŠ
 			keyword = i.getStringExtra("SEARCH");
-			//Log.v("Šm”F", keyword + "‚Íkeyword‚Å‚·B");
+			//Log.v("Ã¤mÃ®F", keyword + "Ã‡Ã•keywordÃ‡â‰ˆÃ‡âˆ‘Ã…B");
 			String encodeKeyword = URLEncoder.encode(keyword, "UTF-8");
 
-			String uri = "http://api.rakuten.co.jp/rws/3.0/rest?developerId=c49629cf93f27be23c20d2f7af1086a5"
+			String uri = "http://api.rakuten.co.jp/rws/3.0/rest?developerId=***"
 					+ "&operation=KeywordHotelSearch"
 					+ "&version=2009-10-20"
 					+ "&keyword=" + encodeKeyword;
-			// -----[httpƒNƒ‰ƒCƒAƒ“ƒg‚Ìİ’è]
+			// -----[httpÃ‰NÃ‰Ã¢Ã‰CÃ‰AÃ‰Ã¬Ã‰gÃ‡ÃƒÃªâ€ºÃ­Ã‹]
 			HttpClient client = new DefaultHttpClient();
 			HttpGet get = new HttpGet();
 			URL url;
 			url = new URL(uri);
 			URLConnection urlcon;
 			urlcon = url.openConnection();
-			urlcon.setDoOutput(true);// POST‰Â”\‚É‚·‚é
+			urlcon.setDoOutput(true);// POSTÃ¢Â¬Ã®\Ã‡â€¦Ã‡âˆ‘Ã‡Ãˆ
 
 			InputStream is;
 			is = urlcon.getInputStream();
@@ -62,13 +62,13 @@ public class ShowHotel extends Activity {
 			int eventType;
 			eventType = parser.getEventType();
 
-			// ƒzƒeƒ‹”Ô†ƒŠƒXƒg
+			// Ã‰zÃ‰eÃ‰Ã£Ã®â€˜Ã§ÃœÃ‰Ã¤Ã‰XÃ‰g
 			final ArrayList<String> hotelNo = new ArrayList<String>();
-			// ƒzƒeƒ‹–¼ƒŠƒXƒg
+			// Ã‰zÃ‰eÃ‰Ã£Ã±ÂºÃ‰Ã¤Ã‰XÃ‰g
 			ArrayList<String> hotelName = new ArrayList<String>();
 
 			while ((eventType = parser.next()) != XmlPullParser.END_DOCUMENT) {
-				// hotelNo‚ğŒ©‚Â‚¯‚½‚ç@hotelNoƒŠƒXƒg‚É’Ç‰Á
+				// hotelNoÃ‡ï£¿Ã¥Â©Ã‡Â¬Ã‡Ã˜Ã‡Î©Ã‡ÃÃ…@hotelNoÃ‰Ã¤Ã‰XÃ‰gÃ‡â€¦Ã­Â«Ã¢Â¡
 				if (eventType == XmlPullParser.START_TAG
 						&& "hotelNo".equals(parser.getName())) {
 					parser.next();
@@ -76,7 +76,7 @@ public class ShowHotel extends Activity {
 					hotelNo.add(parser.getText());
 					// hotelNo[j]=parser.getText();
 				}
-				// hotelName‚ğŒ©‚Â‚¯‚½‚çhotelNameƒŠƒXƒg‚É’Ç‰Á
+				// hotelNameÃ‡ï£¿Ã¥Â©Ã‡Â¬Ã‡Ã˜Ã‡Î©Ã‡ÃhotelNameÃ‰Ã¤Ã‰XÃ‰gÃ‡â€¦Ã­Â«Ã¢Â¡
 				if (eventType == XmlPullParser.START_TAG
 						&& "hotelName".equals(parser.getName())) {
 					parser.next();
@@ -85,25 +85,25 @@ public class ShowHotel extends Activity {
 					// hotelName[j]=parser.getText();
 				}
 			}
-			// ƒzƒeƒ‹–¼‚ğ•\¦‚·‚éƒŠƒXƒg
+			// Ã‰zÃ‰eÃ‰Ã£Ã±ÂºÃ‡ï£¿Ã¯\Ã©Â¶Ã‡âˆ‘Ã‡ÃˆÃ‰Ã¤Ã‰XÃ‰g
 			ArrayAdapter<String> hotelName_list = new ArrayAdapter<String>(
 					this, R.layout.view, hotelName);
-			// ƒŠƒXƒg‚ğƒZƒbƒg
+			// Ã‰Ã¤Ã‰XÃ‰gÃ‡ï£¿Ã‰ZÃ‰bÃ‰g
 			ListView listView = (ListView) findViewById(id.list);
 			listView.setAdapter(hotelName_list);
 			listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					ListView listView = (ListView) parent;
-					// ƒNƒŠƒbƒN‚³‚ê‚½ƒAƒCƒeƒ€‚ğæ“¾
+					// Ã‰NÃ‰Ã¤Ã‰bÃ‰NÃ‡â‰¥Ã‡ÃÃ‡Î©Ã‰AÃ‰CÃ‰eÃ‰Ã„Ã‡ï£¿Ã©ÃŠÃ¬Ã¦
 					String item = (String) listView.getItemAtPosition(position);
-					// ƒ|ƒbƒvƒAƒbƒv“I‚È‚â‚Â
+					// Ã‰|Ã‰bÃ‰vÃ‰AÃ‰bÃ‰vÃ¬IÃ‡Â»Ã‡â€šÃ‡Â¬
 					Toast.makeText(ShowHotel.this, item, Toast.LENGTH_LONG).show();
-					//Ÿ‚Ì‰æ–Ê‚ÍFacilityInfo‚¾‚æ
+					//Ã©Ã¼Ã‡ÃƒÃ¢ÃŠÃ±Â Ã‡Ã•FacilityInfoÃ‡Ã¦Ã‡ÃŠ
 					Intent intent = new Intent(ShowHotel.this,
 							FacilityInfo.class);
 					// Log.i("ListViewSample", t.getText().toString() + position);
-					// ƒNƒŠƒbƒN‚µ‚½HotelName‚ÌƒŠƒXƒg‚Ì”Ô†‚ÌHotelNo‚ğæ“¾
+					// Ã‰NÃ‰Ã¤Ã‰bÃ‰NÃ‡ÂµÃ‡Î©HotelNameÃ‡ÃƒÃ‰Ã¤Ã‰XÃ‰gÃ‡ÃƒÃ®â€˜Ã§ÃœÃ‡ÃƒHotelNoÃ‡ï£¿Ã©ÃŠÃ¬Ã¦
 					intent.putExtra("HOTEL_NO", hotelNo.get(position));
 					startActivityForResult(intent, 0);
 				}
